@@ -6,7 +6,7 @@
 /*   By: rcourtoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 08:06:54 by rcourtoi          #+#    #+#             */
-/*   Updated: 2020/08/18 06:14:43 by rcourtoi         ###   ########.fr       */
+/*   Updated: 2020/08/18 06:39:10 by atyrode          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,19 @@ typedef	struct	s_elem	{
 }				t_elem;
 
 
-typedef struct s_path_list{
+typedef struct s_path {
 
-	int size;
-	char **paths;
-}				t_path_list;
+	char *name;
+	struct s_path *next;
+}				t_path;
 
 typedef struct s_meta {
 
 	t_elem *main_list;
 	t_elem *second_list;
+	
+	t_path *main_p_list;
+	t_path *second_p_list;
 
 	//options:
 	
@@ -62,7 +65,7 @@ typedef struct s_meta {
 }				t_meta;
 
 
-void	free_and_exit(t_meta *data);
+void	free_and_exit(t_meta *data, char *error_msg);
 void	parsing(t_meta *data, int ac, char **av);
 
 #endif

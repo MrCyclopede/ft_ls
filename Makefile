@@ -6,13 +6,13 @@
 #    By: rcourtoi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 08:14:29 by rcourtoi          #+#    #+#              #
-#    Updated: 2020/08/18 06:14:42 by rcourtoi         ###   ########.fr        #
+#    Updated: 2020/08/18 08:38:14 by atyrode          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIB_PATH = libft
 LIB = $(LIB_PATH)/libft.a

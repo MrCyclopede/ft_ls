@@ -35,7 +35,7 @@
 //		return(1);
 //}
 
-void		path_list_from_dir(t_path_list *p_list, char *dir)
+void		path_list_from_dir(t_path *p_list, char *dir)
 {
 	
 	//do the filling
