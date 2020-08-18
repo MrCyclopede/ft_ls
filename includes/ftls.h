@@ -6,14 +6,12 @@
 /*   By: rcourtoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 08:06:54 by rcourtoi          #+#    #+#             */
-/*   Updated: 2020/08/14 08:57:12 by rcourtoi         ###   ########.fr       */
+/*   Updated: 2020/08/18 05:24:43 by atyrode          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FTLS_H
 # define FTLS_H
-
-
 
 # include <stdlib.h>
 # include <dirent.h>
@@ -22,13 +20,8 @@
 # include <pwd.h>
 # include <grp.h>
 
-
 # include <unistd.h>
 # include "../libft/include/libft.h"
-
-
-
-
 
 typedef struct stat	t_stat;
 
@@ -40,16 +33,21 @@ typedef	struct	s_elem	{
 	char 	*path;
 	t_stat	*stat;
 
+
 	struct s_elem	*next;
 }				t_elem;
 
 
+typedef struct s_path_list{
+
+	int size;
+	char **paths;
+}				t_path_list;
+
 typedef struct s_meta {
 
 	t_elem *main_list;
-
-
-	t_elem *sec_list;
+	t_elem *second_list;
 
 	//options:
 	
