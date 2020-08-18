@@ -37,15 +37,22 @@
 
 void		path_list_from_dir(t_path_list *p_list, char *dir)
 {
+	
 	//do the filling
 	(void)p_list;
+	(void)dir;
 }
 
 
 
 
-void	free_and_exit(t_meta *data)
+void	free_and_exit(t_meta *data, char *error_msg)
 {
+
+	if (error_msg)
+		ft_printf("Error: %s\n", error_msg);
+
+
 	(void)data;
 	// Free tibet
 	// free palestine
@@ -66,7 +73,8 @@ int main(int ac, char **av)
 	ft_bzero(&data, sizeof(t_meta));
 
 
-//	arg_parsing(&data, ac, av);
+
+	parsing(&data, ac, av);
 	
 
 	

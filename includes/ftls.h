@@ -6,12 +6,14 @@
 /*   By: rcourtoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 08:06:54 by rcourtoi          #+#    #+#             */
-/*   Updated: 2020/08/18 05:24:43 by atyrode          ###   ########.fr       */
+/*   Updated: 2020/08/18 06:14:43 by rcourtoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FTLS_H
 # define FTLS_H
+
+# include <stdio.h>/// 
 
 # include <stdlib.h>
 # include <dirent.h>
@@ -58,5 +60,9 @@ typedef struct s_meta {
 	int	a;
 
 }				t_meta;
+
+
+void	free_and_exit(t_meta *data);
+void	parsing(t_meta *data, int ac, char **av);
 
 #endif

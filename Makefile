@@ -6,7 +6,7 @@
 #    By: rcourtoi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/14 08:14:29 by rcourtoi          #+#    #+#              #
-#    Updated: 2020/08/14 08:14:31 by rcourtoi         ###   ########.fr        #
+#    Updated: 2020/08/18 06:14:42 by rcourtoi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ HEADER		=	./includes/ftls.h
 
 SRC_DIR = src
 
-SRC = main.c
+SRC = main.c parsing.c
 
 all: $(NAME)
 
