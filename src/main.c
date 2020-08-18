@@ -35,6 +35,14 @@
 //		return(1);
 //}
 
+void		path_list_from_dir(t_path_list *p_list, char *dir)
+{
+	//do the filling
+	(void)p_list;
+}
+
+
+
 
 void	free_and_exit(t_meta *data)
 {
@@ -49,18 +57,20 @@ void	free_and_exit(t_meta *data)
 	exit(1);
 }
 
+//int ft_ls(t_meta *data, int size, char **path_list)// 
+
 int main(int ac, char **av)
 {
 	t_meta data;
 
 	ft_bzero(&data, sizeof(t_meta));
+
+
+//	arg_parsing(&data, ac, av);
 	
 
-	arg_parsing(&data, ac, av);
 	
-
-	
-	ls(&data);
+//	ft_ls(&data);
 	
 	
 		
