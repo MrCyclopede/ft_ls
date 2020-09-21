@@ -13,11 +13,13 @@
 #include "ftls.h"
 
 
-void	print_path_list(t_path *cur)
+void	print_path_list(t_path *list)
 {
+	t_path *cur;
 	int i;
 
 	i = 0;
+	cur = list;
 	while (cur)
 	{
 
@@ -51,53 +53,47 @@ void	get_option(t_meta *data, char *opt)
 	}
 }
 
-void	add_to_second_p_list(t_meta *data, t_path *link)
+void	add_to_plist(t_path **plist, t_path *link)
 {
-	t_path *next_node;
-	next_node = data->second_p_list;
-	
-	link->next = next_node;
-	data->second_p_list = link;
+	link->next = *plist;
+	*plist = link;
 }
 
-void	split_path_list(t_meta *data)
+void	split_parsing_list(t_meta *data, int split)
 {
-	t_path	*cur;	
-	t_path 	*previous_node;	
+	t_path *cur;
+	t_path *next;
 	struct stat filestat;
 	
-	cur = data->main_p_list;
-	previous_node = NULL;
+	cur = data->parsing_list;
+	next = cur->next;
 	while (cur)
-	{	
+	{
+
 		ft_bzero(&filestat, sizeof(struct stat));
 		stat(cur->name, &filestat);
-		if (S_ISDIR(filestat.st_mode))
-		{
-			if (!previous_node)
-				data->main_p_list = cur->next;
-			else
-				previous_node->next = cur->next;
-			add_to_second_p_list(data, cur);
-		}
+		printf("currently seing: %s, isdir? %d \n", cur->name, S_ISDIR(filestat.st_mode));
+		if (split && S_ISDIR(filestat.st_mode))
+			add_to_plist(&data->second_p_list, cur);
 		else
-			previous_node = cur;
-		cur = previous_node->next;;
-
+			add_to_plist(&data->main_p_list, cur);
+		cur = next;
+		if (cur)
+			next = cur->next;
 	}
 }
 
-void	add_to_path_list(t_meta *data, char *name)
+void	add_to_parsing_list(t_meta *data, char *name)
 {
 	t_path 	*next_node;
 	t_path	*new_node;
 
-	next_node = data->main_p_list;
+	next_node = data->parsing_list;
 	if (!(new_node = ft_memalloc(sizeof(t_path))))
 			free_and_exit(data, "Malloc exploded");
 	new_node->next = next_node;
 	new_node->name = name;
-	data->main_p_list = new_node;
+	data->parsing_list = new_node;
 }
 
 void	parsing(t_meta *data, int ac, char **av)
@@ -116,18 +112,20 @@ void	parsing(t_meta *data, int ac, char **av)
 		else
 		{
 			end_of_options = 1;
-			add_to_path_list(data, av[i]);
+			add_to_parsing_list(data, av[i]);
 		}
 		i++;
 	}
-	ft_printf("before split\n");
-	print_path_list(data->main_p_list);
-	split_path_list(data);
-	ft_printf("\n\nafter split\n");
-	ft_printf("\nfirst\n");
-	print_path_list(data->main_p_list);
-	ft_printf("\nsecond\n");
-	print_path_list(data->second_p_list);
+
+	ft_printf("parsing_list\n");
+	print_path_list(data->parsing_list);
+	
+	
+		split_parsing_list(data, 1);
+	
+		ft_printf("MAIN\n");
+		print_path_list(data->main_p_list);
+		
+		ft_printf("SECND\n");
+		print_path_list(data->second_p_list);
 }
-
-
